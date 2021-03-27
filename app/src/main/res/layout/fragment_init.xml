@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true"
+    tools:context=".Fragments.Init">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@mipmap/fondo" />
+
+        <ImageView
+            android:id="@+id/logom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/logo_mercado_libre" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/logom"
+            android:layout_gravity="center"
+            android:layout_marginTop="80dp"
+            android:layout_centerHorizontal="true"
+            android:keyboardNavigationCluster="true"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/editbuscar"
+                    android:layout_width="300dp"
+                    android:layout_height="60dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:drawableRight="@drawable/ic_action_search"
+                    android:focusableInTouchMode="false"
+                    android:gravity="center"
+                    android:hint="Que Deseas Hoy"
+                    android:imeOptions="actionSearch"
+                    android:singleLine="true"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+</ScrollView>
