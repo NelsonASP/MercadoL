@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FFC300</color>
+    <color name="colorPrimary">#FFD304</color>
     <color name="colorPrimaryDark">#FFC300</color>
     <color name="mercadolibre">#f6df00</color>
     <color name="colorAccent">#008FFF</color>

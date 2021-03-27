@@ -1,40 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Fragments.FragmentGalery">
-    <LinearLayout
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="right"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-        <ImageButton
-            android:id="@+id/btnlist"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:layout_margin="5dp"
-            android:src="@drawable/ic_action_list" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <ImageButton
-            android:id="@+id/btngrid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:layout_margin="5dp"
-            android:src="@drawable/ic_action_grid" />
+            <ImageView
+                android:id="@+id/fondo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@mipmap/fondo" />
 
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/logom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:src="@drawable/logo_mercado_libre" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerID"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/fondo"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-    </androidx.recyclerview.widget.RecyclerView>
+                <ImageButton
+                    android:id="@+id/btnlist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/ic_action_list" />
 
-</LinearLayout>
+                <ImageButton
+                    android:id="@+id/btngrid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/ic_action_grid" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/list">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+
+
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+
+</RelativeLayout>

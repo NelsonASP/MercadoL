@@ -86,7 +86,7 @@ public class Init extends Fragment {
         View view = inflater.inflate(R.layout.fragment_init, container, false);
 
         search = view.findViewById(R.id.editbuscar);
-       
+
 
         search.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {

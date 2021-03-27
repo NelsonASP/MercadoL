@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.mercado.mercadol.Articulo;
 import com.mercado.mercadol.MainActivity;
@@ -32,7 +33,7 @@ import java.util.ArrayList;
  * Use the {@link FragmentGalery#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentGalery extends Fragment {
+public class FragmentGalery extends Fragment{
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -47,6 +48,7 @@ public class FragmentGalery extends Fragment {
     RecyclerView recycleritems;
     ImageButton btnlist, btngrid;
     ImageView imageView;
+    TextView title;
 
     AdapterItem adapterItem;
 
@@ -150,8 +152,6 @@ public class FragmentGalery extends Fragment {
             @Override
             public void onClick(View view) {
 
-                view.getId();
-
                 articulo = new Articulo();
                 ((MainActivity) requireActivity()).setNextFragment(new FragmentItem(articulo));
 
@@ -176,4 +176,5 @@ public class FragmentGalery extends Fragment {
             construirRecycler();
         }
     };
+
 }

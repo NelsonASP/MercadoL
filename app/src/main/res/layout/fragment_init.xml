@@ -48,7 +48,6 @@
                     android:layout_height="60dp"
                     android:backgroundTint="@android:color/transparent"
                     android:drawableRight="@drawable/ic_action_search"
-                    android:focusableInTouchMode="false"
                     android:gravity="center"
                     android:hint="Que Deseas Hoy"
                     android:imeOptions="actionSearch"

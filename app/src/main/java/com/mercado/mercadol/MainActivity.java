@@ -2,6 +2,7 @@ package com.mercado.mercadol;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -35,12 +36,11 @@ import static androidx.annotation.InspectableProperty.ValueType.RESOURCE_ID;
 
 public class MainActivity extends AppCompatActivity implements ICallbackListeners, Init.OnFragmentInteractionListener {
 
-    private AppBarConfiguration mAppBarConfiguration;
-
     ConsultasML consultasML;
     final String TAG = "ConsultasML";
 
     FragmentGalery fg;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,27 +53,22 @@ public class MainActivity extends AppCompatActivity implements ICallbackListener
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.frame_container,new Init()).commit();
 
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-
-
-        fg = new FragmentGalery();
     }
 
     @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
     }
 
     @Override
     public void listenerListItemsxName(JSONObject data) {
         Log.e(TAG,"Arreglo" +  data);
+        fg = new FragmentGalery();
 
         try {
             JSONArray arreglo = data.getJSONArray("results");
-            Log.e(TAG,"one");
             fg.llenaritems(arreglo);
             Log.e(TAG,"thwo");
             setNextFragment(fg);
@@ -94,10 +89,8 @@ public class MainActivity extends AppCompatActivity implements ICallbackListener
         fragmentTransaction.commit();
     }
 
-
     @Override
     public void CargaFicha(String item) {
         consultasML.consultaItemsXNombre(item);
     }
-
 }
