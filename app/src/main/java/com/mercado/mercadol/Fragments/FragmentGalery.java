@@ -49,6 +49,7 @@ public class FragmentGalery extends Fragment{
     ImageButton btnlist, btngrid;
     ImageView imageView;
     TextView title;
+    FragmentItem fragmentItem;
 
     AdapterItem adapterItem;
 
@@ -102,6 +103,9 @@ public class FragmentGalery extends Fragment{
 
         imageView = view.findViewById(R.id.idImagen);
 
+        String texto = getArguments().getString("titulo");
+        Log.e(TAG,"datosssss" + texto);
+
         construirRecycler();
         return view;
     }
@@ -120,9 +124,9 @@ public class FragmentGalery extends Fragment{
                 String precio = temp.getString("price");
                 String imagen = temp.getString("thumbnail");
 
-                Log.e(TAG,"estados"+ i + titulo + precio);
+                Log.e(TAG,"estados"+ i + titulo + precio + "https://d500.epimg.net/cincodias/imagenes/2018/11/13/lifestyle/1542113135_776401_1542116070_noticia_normal.jpg");
 
-                listaitmes.add(new ItemsVo(id, titulo,precio, "En 36 x 5000", R.mipmap.xbox ));
+                listaitmes.add(new ItemsVo(id, titulo,precio, "En 36 x 5000",imagen));
             }
             Log.e(TAG,"salida1");
         } catch (JSONException e) {
@@ -132,7 +136,6 @@ public class FragmentGalery extends Fragment{
 
         //adapter.notify();
     }
-
 
 
     private void construirRecycler() {
@@ -151,9 +154,13 @@ public class FragmentGalery extends Fragment{
         adapterItem.setOnclickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Bundle datos = new Bundle();
+                datos.putString("cambios", " cambios estos son datos");
 
-                articulo = new Articulo();
-                ((MainActivity) requireActivity()).setNextFragment(new FragmentItem(articulo));
+                fragmentItem = new FragmentItem();
+                fragmentItem.setArguments(datos);
+
+                ((MainActivity) requireActivity()).setNextFragment(fragmentItem);
 
             }
         });
@@ -176,5 +183,4 @@ public class FragmentGalery extends Fragment{
             construirRecycler();
         }
     };
-
 }

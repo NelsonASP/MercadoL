@@ -7,15 +7,16 @@ public class ItemsVo {
     private String info;
     private String credit;
     private int foto;
+    private String imagen;
 
 
-
-    public ItemsVo(String id, String nombre, String info, String credit, int foto) {
+    public ItemsVo(String id, String nombre, String info, String credit, String imagen) {
         this.id = id;
         this.nombre = nombre;
         this.info = info;
         this.foto = foto;
         this.credit = credit;
+        this.imagen = imagen;
     }
 
     public String getNombre() {
@@ -47,5 +48,13 @@ public class ItemsVo {
 
     public void setCredit(String credit) {
         this.credit = credit;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 }

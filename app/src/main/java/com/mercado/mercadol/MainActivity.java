@@ -21,6 +21,7 @@ import com.mercado.mercadol.Utils.Utils;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements ICallbackListener
 
     @Override
     public void listenerListItemsxName(JSONObject data) {
+
         Log.e(TAG,"Arreglo" +  data);
         fg = new FragmentGalery();
 
@@ -71,6 +73,13 @@ public class MainActivity extends AppCompatActivity implements ICallbackListener
             JSONArray arreglo = data.getJSONArray("results");
             fg.llenaritems(arreglo);
             Log.e(TAG,"thwo");
+
+
+            Bundle datos = new Bundle();
+            datos.putString("titulo", " estos son datos");
+            fg.setArguments(datos);
+
+
             setNextFragment(fg);
 
         }catch (Exception e){

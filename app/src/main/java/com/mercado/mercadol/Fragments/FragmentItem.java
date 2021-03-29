@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,17 +25,9 @@ public class FragmentItem extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private final Articulo articulo;
-
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
-
-    public FragmentItem(Articulo articulo) {
-        // Required empty public constructor
-        this.articulo = articulo;
-    }
 
     /**
      * Use this factory method to create a new instance of
@@ -46,12 +39,16 @@ public class FragmentItem extends Fragment {
      */
     // TODO: Rename and change types and number of parameters
     public static FragmentItem newInstance(String param1, String param2) {
-        FragmentItem fragment = new FragmentItem(null);
+        FragmentItem fragment = new FragmentItem();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    public FragmentItem() {
+        // Required empty public constructor
     }
 
     @Override
@@ -67,6 +64,16 @@ public class FragmentItem extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_item, container, false);
+        View view = inflater.inflate(R.layout.fragment_item, container, false);
+
+        String texto = getArguments().getString("cambios");
+        Log.e("tag","datosssss" + texto);
+
+        return view;
+    }
+
+    public void updateValues(){
+
+
     }
 }
