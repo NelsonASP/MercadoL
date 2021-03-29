@@ -10,15 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
 import com.mercado.mercadol.R;
-import com.mercado.mercadol.Utils.ItemsVo;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Locale;
@@ -38,6 +34,8 @@ public class FragmentItem extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    final String TAG = "ConsultasML";
 
     TextView titulo;
     TextView precio;
@@ -131,14 +129,11 @@ public class FragmentItem extends Fragment {
         return view;
     }
     public void llenaritem(JSONArray arreglo){
-
-        Log.e("Consulta llego","llegooo" + arreglo);
+        Log.e(TAG,"Consulta" + arreglo);
 
         try {
             JSONObject articulo = (JSONObject) arreglo.get(0);
-
             JSONObject body = articulo.getJSONObject("body");
-
             JSONArray imgenes = body.getJSONArray("pictures");
 
             for (int i = 0; i < imgenes.length(); i ++) {
@@ -152,8 +147,6 @@ public class FragmentItem extends Fragment {
             tvItemsVendidos = body.getString("sold_quantity");
             tvCondicion = body.getString("condition");
             acceptsmercadopago = body.getBoolean("accepts_mercadopago");
-
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -164,5 +157,4 @@ public class FragmentItem extends Fragment {
         Double fAmt = Double.parseDouble(amount);
         return String.format(Locale.US, "%.2f", fAmt);
     }
-
 }

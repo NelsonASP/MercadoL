@@ -2,30 +2,15 @@ package com.mercado.mercadol.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
-
-import android.os.Handler;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.mercado.mercadol.MainActivity;
 import com.mercado.mercadol.R;
-import com.mercado.mercadol.Utils.ConsultasML;
-import com.mercado.mercadol.Utils.ICallbackListeners;
-import com.mercado.mercadol.Utils.Utils;
-import com.mercado.mercadol.ui.gallery.GalleryFragment;
-import com.mercado.mercadol.ui.slideshow.SlideshowFragment;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -44,7 +29,6 @@ public class Init extends Fragment {
     private String mParam2;
     EditText search;
     final String TAG = "TAG";
-    Button buscar;
 
     private OnFragmentInteractionListener mListener;
 
@@ -87,7 +71,6 @@ public class Init extends Fragment {
 
         search = view.findViewById(R.id.editbuscar);
 
-
         search.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 // si presiona enter
@@ -121,7 +104,7 @@ public class Init extends Fragment {
 
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void CargaFicha (String item);//retorna al mapa del inicio
+        void CargaFicha (String item);
     }
 
     @Override

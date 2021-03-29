@@ -1,17 +1,8 @@
 package com.mercado.mercadol;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.view.Menu;
-import android.widget.Button;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.navigation.NavigationView;
 import com.mercado.mercadol.Fragments.FragmentGalery;
 import com.mercado.mercadol.Fragments.FragmentItem;
 import com.mercado.mercadol.Fragments.Init;
@@ -19,27 +10,16 @@ import com.mercado.mercadol.Utils.AdapterItem;
 import com.mercado.mercadol.Utils.ConsultasML;
 import com.mercado.mercadol.Utils.ICallbackListeners;
 import com.mercado.mercadol.Utils.ItemsVo;
-import com.mercado.mercadol.Utils.Utils;
-
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 
-import static androidx.annotation.InspectableProperty.ValueType.RESOURCE_ID;
 
 public class MainActivity extends AppCompatActivity implements ICallbackListeners, Init.OnFragmentInteractionListener, FragmentGalery.OnFragmentInteractionListener {
 
@@ -79,20 +59,11 @@ public class MainActivity extends AppCompatActivity implements ICallbackListener
 
     @Override
     public void listenerListItemsxName(JSONObject data) {
-
-        Log.e(TAG,"Arreglo" +  data);
+        Log.e(TAG,"Consulta Items Name" +  data);
         fg = new FragmentGalery();
         try {
             JSONArray arreglo = data.getJSONArray("results");
             fg.llenaritems(arreglo);
-            Log.e(TAG,"thwo");
-
-
-            Bundle datos = new Bundle();
-            datos.putString("titulo", " estos son datos");
-            fg.setArguments(datos);
-
-
             setNextFragment(fg);
 
         }catch (Exception e){
@@ -101,10 +72,8 @@ public class MainActivity extends AppCompatActivity implements ICallbackListener
 
     @Override
     public void listenerListItemsxIds(JSONArray data) {
-        Log.e(TAG,"Arreglo 222" +  data);
-
+        Log.e(TAG,"Consulta Items IDs" +  data);
         fragmentItem = new FragmentItem();
-
         try {
             fragmentItem.llenaritem(data);
             setNextFragment(fragmentItem);
@@ -127,7 +96,6 @@ public class MainActivity extends AppCompatActivity implements ICallbackListener
 
     @Override
     public void cargaID(String item) {
-        Log.e(TAG,"Segunda consulta" +  item);
         consultasML.consultaItemsxIds(item);
     }
 }

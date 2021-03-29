@@ -1,10 +1,7 @@
 package com.mercado.mercadol.Utils;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
-import com.mercado.mercadol.Fragments.FragmentItem;
 import com.mercado.mercadol.MainActivity;
 import com.mercado.mercadol.R;
 import java.net.MalformedURLException;
@@ -56,7 +52,6 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ViewHolderDato
         holder.info.setText(listItems.get(position).getInfo());
         holder.credit.setText(listItems.get(position).getCredit());
 
-
         try {
             Glide.with(holder.itemView.getContext())
                     .load(new URL(listItems.get(position).getImagen()))
@@ -93,15 +88,10 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ViewHolderDato
             foto = itemView.findViewById(R.id.idImagen);
 
         }
-
-       // public void asignarDatos(String datos) {
-         //   name.setText(datos);
-       // }
     }
 
     public void setOnclickListener(View.OnClickListener listener){
         this.listener = listener;
 
     }
-
 }

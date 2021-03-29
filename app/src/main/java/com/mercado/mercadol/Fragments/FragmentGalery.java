@@ -7,17 +7,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.mercado.mercadol.Articulo;
-import com.mercado.mercadol.MainActivity;
 import com.mercado.mercadol.R;
 import com.mercado.mercadol.Utils.AdapterItem;
 import com.mercado.mercadol.Utils.ItemsVo;
@@ -55,8 +50,6 @@ public class FragmentGalery extends Fragment{
     private FragmentGalery.OnFragmentInteractionListener mListener;
 
     final String TAG = "ConsultasML";
-
-    Articulo  articulo;
 
     public FragmentGalery() {
         // Required empty public constructor
@@ -98,14 +91,9 @@ public class FragmentGalery extends Fragment{
         recycleritems = view.findViewById(R.id.recyclerID);
         btngrid = view.findViewById(R.id.btngrid);
         btnlist = view.findViewById(R.id.btnlist);
-
         btngrid.setOnClickListener(listener2);
         btnlist.setOnClickListener(listener2);
-
         imageView = view.findViewById(R.id.idImagen);
-
-        String texto = getArguments().getString("titulo");
-        Log.e(TAG,"datosssss" + texto);
 
         construirRecycler();
         return view;
@@ -115,9 +103,9 @@ public class FragmentGalery extends Fragment{
 
         listaitmes = new ArrayList<>();
 
-        Log.e(TAG,"entrada");
+        Log.e(TAG,"Entrada Arreglo");
         try {
-            Log.e(TAG,"entrada2");
+            Log.e(TAG,"Entrada2 Arreglo");
             for (int i = 0; i < arreglo.length(); i ++) {
                 JSONObject temp  = (JSONObject) arreglo.get(i);
                 String id = temp.getString("id");
@@ -127,26 +115,21 @@ public class FragmentGalery extends Fragment{
                 listaitmes.add(new ItemsVo(id, titulo,precio, "En 36 x 5000",imagen));
 
             }
-            Log.e(TAG,"salida1");
+            Log.e(TAG,"Salida1 Arreglo");
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Log.e(TAG,"salida2");
-
-        //adapter.notify();
+        Log.e(TAG,"Salida Arreglo");
     }
 
 
     private void construirRecycler() {
-        //listaitmes = new ArrayList<>();
 
         if (Utils.visualizacion == Utils.LIST){
             recycleritems.setLayoutManager(new LinearLayoutManager(getActivity()));
         }else {
             recycleritems.setLayoutManager(new GridLayoutManager(getActivity(),2));
         }
-
-       // llenaritems();
 
         adapterItem = new AdapterItem(listaitmes);
 
@@ -158,8 +141,6 @@ public class FragmentGalery extends Fragment{
             }
         });
 
-
-
         recycleritems.setAdapter(adapterItem);
     }
 
@@ -169,11 +150,11 @@ public class FragmentGalery extends Fragment{
             switch (view.getId()){
                 case R.id.btnlist:
                     Utils.visualizacion = Utils.LIST;
-                    Log.e("TAG", "List");
+                    Log.e(TAG, "List");
                     break;
                 case R.id.btngrid:
                     Utils.visualizacion = Utils.GRID;
-                    Log.e("TAG", "Grid");
+                    Log.e(TAG, "Grid");
                     break;
             }
             construirRecycler();
@@ -193,6 +174,6 @@ public class FragmentGalery extends Fragment{
 
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void cargaID (String item);//retorna al mapa del inicio
+        void cargaID (String item);
     }
 }
