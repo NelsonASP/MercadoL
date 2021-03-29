@@ -6,147 +6,235 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.FragmentItem">
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/fondo"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scaleType="fitXY"
-            android:src="@mipmap/fondo" />
+            android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/header"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/idestado1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-light"
-                android:text="Nuevo"
-                android:textSize="15dp" />
-
-            <TextView
-                android:id="@+id/idestado2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-light"
-                android:text="   /1200"
-                android:textSize="15dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/title"
-            android:layout_width="match_parent"
-            android:layout_below="@+id/header"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/idNombre2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-condensed-medium"
-                android:text="Consola Xbox Series X "
-                android:textColor="#008fff"
-                android:textSize="20dp" />
-
-        </LinearLayout>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/lpp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/title"
-            android:layout_gravity="center"
-            android:layout_marginRight="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="20dp"
-            app:cardCornerRadius="15dp"
-            app:cardElevation="5dp">
-
-            <LinearLayout
+            <ImageView
+                android:id="@+id/fondo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:scaleType="fitXY"
+                android:src="@drawable/fondoitem" />
 
-                <ImageView
-                    android:id="@+id/idImagen"
-                    android:layout_width="220dp"
-                    android:layout_height="250dp"
-                    android:layout_margin="5dp"
-                    android:layout_marginTop="10dp"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/xbox" />
+            <LinearLayout
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/idCondicion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:text="Nuevo"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:fontFamily="monospace"
+                    android:text="/"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/idVendidos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:text="0001"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+            <LinearLayout
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/header"
+                android:layout_marginLeft="15dp"
+                android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/infom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="20dp"
-            android:layout_below="@+id/lpp"
-            android:orientation="vertical">
+                <TextView
+                    android:id="@+id/idtitulo"
+                    android:layout_width="240dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:minLines="2"
+                    android:text="Consola Xbox Series X "
+                    android:textColor="#008fff"
+                    android:textSize="20dp" />
 
-            <TextView
-                android:id="@+id/idNombre"
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/lpp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title"
+                android:layout_gravity="center"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="40dp"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/idImagen"
+                        android:layout_width="220dp"
+                        android:layout_height="250dp"
+                        android:layout_margin="5dp"
+                        android:layout_marginTop="10dp"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/xbox" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:id="@+id/infom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lpp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="15dp"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/lpp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/title"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="40dp"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="5dp">
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="5dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="$"
+                            android:textSize="20dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/idprecio"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="30dp"
+                            android:text="100.000.000"
+                            android:textSize="20dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/idmoneda"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ARS"
+                            android:textSize="20dp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/mercadologo" />
+
+                    <TextView
+                        android:id="@+id/idNombre"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="5dp"
+                        android:text="Acepta mercadopago:"
+                        android:textColor="@android:color/holo_blue_dark"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/idmercadopago"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="5dp"
+                        android:text="Si"
+                        android:textColor="@android:color/black"
+                        android:textSize="20dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/canceluno"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-light"
-                android:text="Consola Xbox Series X "
-                android:textSize="20dp" />
+                android:layout_below="@+id/infom"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="30dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="30dp"
+                app:cardElevation="0dp">
 
-            <TextView
-                android:id="@+id/idInfo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="$100.000.000"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/idCredit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="En 36 x 5000"
-                android:textSize="15dp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/canceluno"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
-        app:cardBackgroundColor="@android:color/transparent"
-        app:cardCornerRadius="30dp"
-        app:cardElevation="0dp">
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/holo_blue_dark"
-            android:paddingLeft="50dp"
-            android:paddingRight="50dp"
-            android:text="COMPRAR AHORA"
-            android:textColor="@android:color/white" />
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/holo_blue_dark"
+                    android:paddingLeft="50dp"
+                    android:paddingRight="50dp"
+                    android:text="COMPRAR AHORA"
+                    android:textColor="@android:color/white" />
 
 
-    </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
+
+
+        </RelativeLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
 
 </RelativeLayout>

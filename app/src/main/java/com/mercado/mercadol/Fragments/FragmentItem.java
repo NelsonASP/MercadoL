@@ -8,10 +8,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-import com.mercado.mercadol.Articulo;
 import com.mercado.mercadol.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +34,18 @@ public class FragmentItem extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    TextView titulo;
+    TextView precio;
+    ImageView imagen;
+    TextView condicion;
+    TextView vendidos;
+    String tvPrecio;
+    String tvTitulo;
+    String tvMoneda;
+    String tvItemsVendidos;
+    String tvCondicion;
+    Boolean tvMercadopago;
 
     /**
      * Use this factory method to create a new instance of
@@ -66,14 +84,54 @@ public class FragmentItem extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_item, container, false);
 
-        String texto = getArguments().getString("cambios");
-        Log.e("tag","datosssss" + texto);
+        titulo = view.findViewById(R.id.idtitulo);
+        precio = view.findViewById(R.id.idprecio);
+        imagen = view.findViewById(R.id.idImagen);
+        condicion = view.findViewById(R.id.idCondicion);
+        vendidos = view.findViewById(R.id.idVendidos);
 
+        titulo.setText(tvTitulo);
+        precio.setText(formatAmount(tvPrecio));
+        vendidos.setText(tvItemsVendidos);
+
+        switch (tvCondicion){
+            case "used":
+                condicion.setText("Usado");
+                break;
+
+            case "new":
+                condicion.setText("Nuevo");
+                break;
+
+        }
         return view;
     }
+    public void llenaritem(JSONArray arreglo){
 
-    public void updateValues(){
+        Log.e("Consulta llego","llegooo" + arreglo);
 
+        try {
+            JSONObject articulo = (JSONObject) arreglo.get(0);
+
+            JSONObject body = articulo.getJSONObject("body");
+
+            tvTitulo = body.getString("title");
+            tvPrecio = body.getString("price");
+            tvMoneda = body.getString("currency_id");
+            tvItemsVendidos = body.getString("sold_quantity");
+            tvCondicion = body.getString("condition");
+            boolean accepts_mercadopago = body.getBoolean("accepts_mercadopago");
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
     }
+
+    private String formatAmount(String amount) {
+        Double fAmt = Double.parseDouble(amount);
+        return String.format(Locale.US, "%.2f", fAmt);
+    }
+
 }

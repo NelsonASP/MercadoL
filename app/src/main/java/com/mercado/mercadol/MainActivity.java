@@ -13,9 +13,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.mercado.mercadol.Fragments.FragmentGalery;
+import com.mercado.mercadol.Fragments.FragmentItem;
 import com.mercado.mercadol.Fragments.Init;
+import com.mercado.mercadol.Utils.AdapterItem;
 import com.mercado.mercadol.Utils.ConsultasML;
 import com.mercado.mercadol.Utils.ICallbackListeners;
+import com.mercado.mercadol.Utils.ItemsVo;
 import com.mercado.mercadol.Utils.Utils;
 
 import androidx.fragment.app.Fragment;
@@ -29,18 +32,27 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import static androidx.annotation.InspectableProperty.ValueType.RESOURCE_ID;
 
-public class MainActivity extends AppCompatActivity implements ICallbackListeners, Init.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements ICallbackListeners, Init.OnFragmentInteractionListener, FragmentGalery.OnFragmentInteractionListener {
 
     ConsultasML consultasML;
     final String TAG = "ConsultasML";
 
+    AdapterItem adapterItem;
+    ArrayList<ItemsVo> listaitmes;
+
+    RecyclerView recycleritems;
+
     FragmentGalery fg;
+    FragmentItem fragmentItem;
 
 
     @Override
@@ -54,6 +66,8 @@ public class MainActivity extends AppCompatActivity implements ICallbackListener
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.frame_container,new Init()).commit();
 
+        adapterItem = new AdapterItem(listaitmes);
+        recycleritems = findViewById(R.id.recyclerID);
     }
 
     @Override
@@ -68,7 +82,6 @@ public class MainActivity extends AppCompatActivity implements ICallbackListener
 
         Log.e(TAG,"Arreglo" +  data);
         fg = new FragmentGalery();
-
         try {
             JSONArray arreglo = data.getJSONArray("results");
             fg.llenaritems(arreglo);
@@ -88,7 +101,16 @@ public class MainActivity extends AppCompatActivity implements ICallbackListener
 
     @Override
     public void listenerListItemsxIds(JSONArray data) {
+        Log.e(TAG,"Arreglo 222" +  data);
 
+        fragmentItem = new FragmentItem();
+
+        try {
+            fragmentItem.llenaritem(data);
+            setNextFragment(fragmentItem);
+
+        }catch (Exception e){
+        }
     }
 
     public void setNextFragment(Fragment fragment){
@@ -101,5 +123,11 @@ public class MainActivity extends AppCompatActivity implements ICallbackListener
     @Override
     public void CargaFicha(String item) {
         consultasML.consultaItemsXNombre(item);
+    }
+
+    @Override
+    public void cargaID(String item) {
+        Log.e(TAG,"Segunda consulta" +  item);
+        consultasML.consultaItemsxIds(item);
     }
 }

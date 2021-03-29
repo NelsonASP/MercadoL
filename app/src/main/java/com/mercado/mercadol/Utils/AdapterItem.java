@@ -1,6 +1,10 @@
 package com.mercado.mercadol.Utils;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +13,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
+import com.mercado.mercadol.Fragments.FragmentItem;
+import com.mercado.mercadol.MainActivity;
 import com.mercado.mercadol.R;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -18,8 +24,8 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ViewHolderDato
 
     public ArrayList<ItemsVo> listItems;
     private View.OnClickListener listener;
-    int posicionmarcada = 0;
     public static Context context;
+    Intent intent;
 
     public AdapterItem(ArrayList<ItemsVo> listDatos) {
         this.listItems = listDatos;
@@ -39,16 +45,17 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ViewHolderDato
 
         view.setOnClickListener(this);
 
+        intent = new Intent(view.getContext(), MainActivity.class);
+
         return new ViewHolderDatos(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolderDatos holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolderDatos holder, final int position) {
         holder.name.setText(listItems.get(position).getNombre());
         holder.info.setText(listItems.get(position).getInfo());
         holder.credit.setText(listItems.get(position).getCredit());
 
-        //Picasso.get().load(listItems.get(position).getImagen()).error(R.mipmap.user_icon).into(holder.foto);
 
         try {
             Glide.with(holder.itemView.getContext())
@@ -57,15 +64,6 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.ViewHolderDato
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
-
     }
 
     @Override
