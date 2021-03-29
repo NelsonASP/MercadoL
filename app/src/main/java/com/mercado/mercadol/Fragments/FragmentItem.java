@@ -11,12 +11,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.mercado.mercadol.R;
+import com.mercado.mercadol.Utils.ItemsVo;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Locale;
 
 /**
@@ -40,12 +44,15 @@ public class FragmentItem extends Fragment {
     ImageView imagen;
     TextView condicion;
     TextView vendidos;
+    TextView moneda;
+    TextView mercadoPago;
     String tvPrecio;
     String tvTitulo;
     String tvMoneda;
     String tvItemsVendidos;
     String tvCondicion;
-    Boolean tvMercadopago;
+    Boolean acceptsmercadopago;
+    String imagenurl;
 
     /**
      * Use this factory method to create a new instance of
@@ -89,10 +96,27 @@ public class FragmentItem extends Fragment {
         imagen = view.findViewById(R.id.idImagen);
         condicion = view.findViewById(R.id.idCondicion);
         vendidos = view.findViewById(R.id.idVendidos);
+        moneda = view.findViewById(R.id.idmoneda);
+        mercadoPago = view.findViewById(R.id.idmercadopago);
 
         titulo.setText(tvTitulo);
         precio.setText(formatAmount(tvPrecio));
         vendidos.setText(tvItemsVendidos);
+        moneda.setText(tvMoneda);
+
+        try {
+            Glide.with(view)
+                    .load(new URL(imagenurl))
+                    .into(imagen);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        if (acceptsmercadopago == true){
+           mercadoPago.setText("Si");
+       }else {
+           mercadoPago.setText("No");
+       }
 
         switch (tvCondicion){
             case "used":
@@ -115,12 +139,19 @@ public class FragmentItem extends Fragment {
 
             JSONObject body = articulo.getJSONObject("body");
 
+            JSONArray imgenes = body.getJSONArray("pictures");
+
+            for (int i = 0; i < imgenes.length(); i ++) {
+                JSONObject temp1  = (JSONObject) imgenes.get(0);
+                imagenurl = temp1.getString("url");
+            }
+
             tvTitulo = body.getString("title");
             tvPrecio = body.getString("price");
             tvMoneda = body.getString("currency_id");
             tvItemsVendidos = body.getString("sold_quantity");
             tvCondicion = body.getString("condition");
-            boolean accepts_mercadopago = body.getBoolean("accepts_mercadopago");
+            acceptsmercadopago = body.getBoolean("accepts_mercadopago");
 
 
         } catch (JSONException e) {
