@@ -128,6 +128,12 @@ public class FragmentItem extends Fragment {
         }
         return view;
     }
+
+    /**
+     * *
+     * Método que recibe los datos del Main Activity
+     * *
+     */
     public void llenaritem(JSONArray arreglo){
         Log.e(TAG,"Consulta" + arreglo);
 

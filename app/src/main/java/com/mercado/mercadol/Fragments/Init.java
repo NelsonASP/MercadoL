@@ -102,6 +102,12 @@ public class Init extends Fragment {
         }
     }
 
+    /**
+     * *
+     * Método para envío de parámetro de búsqueda
+     * *
+     */
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void CargaFicha (String item);

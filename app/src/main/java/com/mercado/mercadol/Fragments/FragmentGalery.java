@@ -99,6 +99,12 @@ public class FragmentGalery extends Fragment{
         return view;
     }
 
+    /**
+     * *
+     * Método de recepción de consulta
+     * *
+     */
+
     public void llenaritems(JSONArray arreglo){
 
         listaitmes = new ArrayList<>();
@@ -122,6 +128,11 @@ public class FragmentGalery extends Fragment{
         Log.e(TAG,"Salida Arreglo");
     }
 
+    /**
+     * *
+     * RecyclerView
+     * *
+     */
 
     private void construirRecycler() {
 
@@ -143,6 +154,12 @@ public class FragmentGalery extends Fragment{
 
         recycleritems.setAdapter(adapterItem);
     }
+
+    /**
+     * *
+     * Onclik para RecyclerView Grid o List
+     * *
+     */
 
     private View.OnClickListener listener2 = new View.OnClickListener() {
         @Override
@@ -171,6 +188,12 @@ public class FragmentGalery extends Fragment{
             //+ " must implement OnFragmentInteractionListener");
         }
     }
+
+    /**
+     * *
+     * Método para envío de ID de producto
+     * *
+     */
 
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name

@@ -25,12 +25,9 @@ public class MainActivity extends AppCompatActivity implements ICallbackListener
 
     ConsultasML consultasML;
     final String TAG = "ConsultasML";
-
     AdapterItem adapterItem;
     ArrayList<ItemsVo> listaitmes;
-
     RecyclerView recycleritems;
-
     FragmentGalery fg;
     FragmentItem fragmentItem;
 
@@ -57,6 +54,12 @@ public class MainActivity extends AppCompatActivity implements ICallbackListener
         return true;
     }
 
+    /**
+     * *
+     * Consulta por Nombre
+     * *
+     */
+
     @Override
     public void listenerListItemsxName(JSONObject data) {
         Log.e(TAG,"Consulta Items Name" +  data);
@@ -70,6 +73,12 @@ public class MainActivity extends AppCompatActivity implements ICallbackListener
         }
     }
 
+    /**
+     * *
+     * Consulta por ID
+     * *
+     */
+
     @Override
     public void listenerListItemsxIds(JSONArray data) {
         Log.e(TAG,"Consulta Items IDs" +  data);
@@ -82,6 +91,12 @@ public class MainActivity extends AppCompatActivity implements ICallbackListener
         }
     }
 
+    /**
+     * *
+     * Método de transición de Fragments
+     * *
+     */
+
     public void setNextFragment(Fragment fragment){
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.frame_container,fragment);
@@ -89,10 +104,22 @@ public class MainActivity extends AppCompatActivity implements ICallbackListener
         fragmentTransaction.commit();
     }
 
+    /**
+     * *
+     * Método de consulta por nombre.
+     * *
+     */
+
     @Override
     public void CargaFicha(String item) {
         consultasML.consultaItemsXNombre(item);
     }
+
+    /**
+     * *
+     * Método de consulta por ID
+     * *
+     */
 
     @Override
     public void cargaID(String item) {
